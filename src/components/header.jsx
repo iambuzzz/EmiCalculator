@@ -23,7 +23,7 @@ export function Header() {
 
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full border border-border/50">
-            <span className="text-xs font-semibold text-muted-foreground">
+            <span suppressHydrationWarning className="text-xs font-semibold text-muted-foreground">
               {tabId}
             </span>
             {isLeader && (
