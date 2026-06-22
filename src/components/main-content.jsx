@@ -37,17 +37,7 @@ export function MainContent() {
       )}
 
       {state.mode === 'prepayment' && (
-        <div className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div className="lg:col-span-4">
-              <CalculatorInputs />
-            </div>
-            <div className="lg:col-span-8">
-              <CalculatorSummary />
-            </div>
-          </div>
-          <PrepaymentMode />
-        </div>
+        <PrepaymentMode />
       )}
       
       <p className="text-center text-xs text-muted-foreground mt-8">
