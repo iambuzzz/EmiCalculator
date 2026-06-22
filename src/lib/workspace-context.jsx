@@ -6,7 +6,7 @@ import { DEFAULT_STATE } from './constants';
 const WorkspaceContext = createContext(null);
 
 function generateTabId() {
-  return 'Tab ' + Math.random().toString(36).substring(2, 6).toUpperCase();
+  return Date.now() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
 }
 
 export function WorkspaceProvider({ children }) {

@@ -6,6 +6,7 @@ import { Moon, Sun, MonitorSmartphone } from 'lucide-react';
 
 export function Header() {
   const { isMounted, tabId, activeTabsCount, state, updateState, isLeader } = useWorkspace();
+  const displayId = tabId ? `Tab ${tabId.split('-')[1]}` : 'Tab ---';
 
   return (
     <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
@@ -24,7 +25,7 @@ export function Header() {
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full border border-border/50">
             <span className="text-xs font-semibold text-muted-foreground">
-              {isMounted ? tabId : 'Tab ---'}
+              {isMounted ? displayId : 'Tab ---'}
             </span>
             {isMounted && isLeader && (
               <span className="text-[9px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-1.5 py-0.5 rounded-sm">
