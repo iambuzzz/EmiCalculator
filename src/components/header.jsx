@@ -5,7 +5,7 @@ import { useWorkspace } from '@/lib/workspace-context';
 import { Moon, Sun, MonitorSmartphone } from 'lucide-react';
 
 export function Header() {
-  const { tabId, activeTabsCount, state, updateState, isLeader } = useWorkspace();
+  const { isMounted, tabId, activeTabsCount, state, updateState, isLeader } = useWorkspace();
 
   return (
     <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
@@ -23,10 +23,10 @@ export function Header() {
 
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full border border-border/50">
-            <span suppressHydrationWarning className="text-xs font-semibold text-muted-foreground">
-              {tabId}
+            <span className="text-xs font-semibold text-muted-foreground">
+              {isMounted ? tabId : 'Tab ---'}
             </span>
-            {isLeader && (
+            {isMounted && isLeader && (
               <span className="text-[9px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-1.5 py-0.5 rounded-sm">
                 Leader
               </span>
@@ -36,7 +36,7 @@ export function Header() {
           <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 text-primary rounded-full border border-primary/10">
             <MonitorSmartphone className="w-3.5 h-3.5" />
             <span className="text-xs font-semibold">
-              {activeTabsCount} {activeTabsCount === 1 ? 'tab' : 'tabs'}
+              {isMounted ? activeTabsCount : 1} {(isMounted ? activeTabsCount : 1) === 1 ? 'tab' : 'tabs'}
             </span>
           </div>
 

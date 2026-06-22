@@ -11,7 +11,12 @@ function generateTabId() {
 
 export function WorkspaceProvider({ children }) {
   const [tabId] = useState(() => generateTabId());
-  const [state, setState] = useState({ ...DEFAULT_STATE, sourceTabId: tabId });
+  const [isMounted, setIsMounted] = useState(false);
+  const [state, setState] = useState(() => ({ 
+    ...DEFAULT_STATE, 
+    sourceTabId: tabId, 
+    timestamp: 0 
+  }));
   const [activeTabs, setActiveTabs] = useState({});
   
   const stateRef = useRef(state);
@@ -19,6 +24,7 @@ export function WorkspaceProvider({ children }) {
   const channelRef = useRef(null);
 
   useEffect(() => {
+    setIsMounted(true);
     const channel = new BroadcastChannel('emi-workspace-sync');
     channelRef.current = channel;
 
@@ -95,7 +101,7 @@ export function WorkspaceProvider({ children }) {
   const isLeader = Object.keys(activeTabs).every(id => id > tabId);
 
   return (
-    <WorkspaceContext.Provider value={{ tabId, activeTabsCount, state, updateState, isLeader }}>
+    <WorkspaceContext.Provider value={{ isMounted, tabId, activeTabsCount, state, updateState, isLeader }}>
       {children}
     </WorkspaceContext.Provider>
   );

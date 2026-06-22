@@ -5,7 +5,5 @@ export const DEFAULT_STATE = {
   theme: 'light',
   mode: 'single',
   scenarios: [],
-  prepayments: [],
-  timestamp: Date.now(),
-  sourceTabId: ''
+  prepayments: []
 };
